@@ -4,6 +4,10 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Manages EVERYTHING about the player. I wrote this script when I was learning the basics,
+/// this probably needs to be 2-3 separate scripts.
+/// </summary>
 public class Player : MonoBehaviour
 {
     Vector2 inputVector;
@@ -288,7 +292,7 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     IEnumerator RespawnPlayer()
     {
-        yield return new WaitForSecondsRealtime(playerDeathAnimLength);  // Wait for death animation
+        yield return new WaitForSeconds(playerDeathAnimLength);  // Wait for death animation
         transform.position = GameObject.Find("PlayerSpawnPoint").transform.position;
         currentHealth = maxHealth;
 
@@ -305,7 +309,7 @@ public class Player : MonoBehaviour
     IEnumerator MakePlayerInvulnerable()
     {
         isInvulnerable = true;
-        yield return new WaitForSecondsRealtime(damageDelay);
+        yield return new WaitForSeconds(damageDelay);
         isInvulnerable = false;
     }
 

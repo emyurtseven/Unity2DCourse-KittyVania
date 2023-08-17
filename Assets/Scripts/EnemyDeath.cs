@@ -12,7 +12,6 @@ public class EnemyDeath : MonoBehaviour
     [SerializeField] float maxPieceVelocity_Y = 2f;
 
 
-    // Update is called once per frame
     void Update()
     {
         if (persistTime > 0)
@@ -27,44 +26,34 @@ public class EnemyDeath : MonoBehaviour
 
     public void SetSprites(string name, float direction)
     {
+        Sprite[] sprites;
+
         if (name.Contains("Mushroom (Enemy)"))
         {
-            int i = 0;
-            foreach (Transform child in transform)
-            {
-                child.GetComponent<SpriteRenderer>().sprite = mushroomSprites[i];
-                float pieceVelocity_X = Random.Range(direction * 2, direction * maxPieceVelocity_X);
-                float pieceVelocity_Y = Random.Range(1, maxPieceVelocity_Y);
-
-                child.GetComponent<Rigidbody2D>().velocity = new Vector2(pieceVelocity_X, pieceVelocity_Y);
-                i++;
-            }
+            sprites = mushroomSprites;
         }
         else if (name.Contains("Bat (Enemy)"))
         {
-            int i = 0;
-            foreach (Transform child in transform)
-            {
-                child.GetComponent<SpriteRenderer>().sprite = batSprites[i];
-                float pieceVelocity_X = Random.Range(direction * 2, direction * maxPieceVelocity_X);
-                float pieceVelocity_Y = Random.Range(1,  maxPieceVelocity_Y);
-
-                child.GetComponent<Rigidbody2D>().velocity = new Vector2(pieceVelocity_X, pieceVelocity_Y);
-                i++;
-            }
+            sprites = batSprites;
         }
         else if (name.Contains("Fish (Enemy)"))
         {
-            int i = 0;
-            foreach (Transform child in transform)
-            {
-                child.GetComponent<SpriteRenderer>().sprite = fishSprites[i];
-                float pieceVelocity_X = Random.Range(direction * 2, direction * maxPieceVelocity_X);
-                float pieceVelocity_Y = Random.Range(1, maxPieceVelocity_Y);
+            sprites = fishSprites;
+        }
+        else
+        {
+            return;
+        }
 
-                child.GetComponent<Rigidbody2D>().velocity = new Vector2(pieceVelocity_X, pieceVelocity_Y);
-                i++;
-            }
+        int i = 0;
+        foreach (Transform child in transform)
+        {
+            child.GetComponent<SpriteRenderer>().sprite = sprites[i];
+            float pieceVelocity_X = Random.Range(direction * 2, direction * maxPieceVelocity_X);
+            float pieceVelocity_Y = Random.Range(1, maxPieceVelocity_Y);
+
+            child.GetComponent<Rigidbody2D>().velocity = new Vector2(pieceVelocity_X, pieceVelocity_Y);
+            i++;
         }
     }
 

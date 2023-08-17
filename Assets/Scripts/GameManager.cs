@@ -148,9 +148,4 @@ public class GameManager : MonoBehaviour
     {
         player.hasGun = true;
     }
-
-    public void ResetGameSession()
-    {
-
-    }
 }
